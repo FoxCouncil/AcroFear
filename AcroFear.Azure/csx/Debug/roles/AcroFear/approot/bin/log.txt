@@ -1,0 +1,130 @@
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>cd /d "D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin\" 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>if "true" == "true" if DEFINED APPCMD goto emulator_setup 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>echo Running in emulator adding iisnode to application host config 
+Running in emulator adding iisnode to application host config
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>FOR /F "tokens=1,2 delims=/" %a in (""C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" ") DO set FN=%a  & set OPN=%b 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>set FN="C:\Program Files\IIS Express\appcmd.exe"   & set OPN=apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>if "apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" " == ""C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" " (
+echo "Could not parse appcmd '"C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  for configuration file, exiting"  
+ goto error 
+) 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>set IISNODE_BINARY_DIRECTORY=C:\Program Files (x86)\iisnode-dev\release\x64 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>set IISNODE_SCHEMA=C:\Program Files (x86)\iisnode-dev\release\x64\iisnode_schema.xml 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>if "AMD64" == "AMD64" goto start 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>set
+ALLUSERSPROFILE=C:\ProgramData
+APPCMD="C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" 
+APPDATA=C:\Users\Fox\AppData\Roaming
+asl.log=Destination=file
+AV_APPDATA=C:\Users\Fox\AppData\Roaming
+AZURE_DRIVE_DEV_PATH=C:\Users\Fox\AppData\Local\dftmp\wadd
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=WINFOXBOX
+ComSpec=C:\WINDOWS\system32\cmd.exe
+DiagnosticStore=C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\directory\DiagnosticStore\
+EMULATED=true
+FN="C:\Program Files\IIS Express\appcmd.exe" 
+FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer
+FPS_BROWSER_USER_PROFILE_STRING=Default
+HAXEPATH=C:\HaxeToolkit\haxe\
+HOMEDRIVE=C:
+HOMEPATH=\Users\Fox
+IISNODE_BINARY_DIRECTORY=C:\Program Files (x86)\iisnode-dev\release\x64
+IISNODE_SCHEMA=C:\Program Files (x86)\iisnode-dev\release\x64\iisnode_schema.xml
+LOCALAPPDATA=C:\Users\Fox\AppData\Local
+LOGONSERVER=\\MicrosoftAccount
+MONITORING_SESSION_NAME=devFabric.mainSession
+MSBuildLoadMicrosoftTargetsReadOnly=true
+NEKO_INSTPATH=C:\HaxeToolkit\neko
+NUMBER_OF_PROCESSORS=8
+OPN=apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" 
+OS=Windows_NT
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PkgDefApplicationConfigFile=C:\Users\Fox\AppData\Local\Temp\dev9054.tmp
+PROCESSOR_ARCHITECTURE=AMD64
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+PROCESSOR_LEVEL=6
+PROCESSOR_REVISION=2a07
+ProgramData=C:\ProgramData
+ProgramFiles=C:\Program Files
+ProgramFiles(x86)=C:\Program Files (x86)
+ProgramW6432=C:\Program Files
+PROMPT=$P$G
+PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\;C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement
+PUBLIC=C:\Users\Public
+RoleDeploymentID=deployment27(103)
+RoleInstanceID=deployment27(103).AcroFear.Azure.AcroFear_IN_0
+RoleName=AcroFear
+RUNTIMEID=node
+RUNTIMEURL=http://az413943.vo.msecnd.net/node/0.10.21.exe;http://nodertncu.blob.core.windows.net/iisnode/0.1.21.exe
+SESSIONNAME=Console
+SystemDrive=C:
+SystemRoot=C:\WINDOWS
+USERDOMAIN=WINFOXBOX
+USERDOMAIN_ROAMINGPROFILE=WINFOXBOX
+USERNAME=Fox
+USERPROFILE=C:\Users\Fox
+VBOX_MSI_INSTALL_PATH=C:\Program Files\Oracle\VirtualBox\
+VisualStudioDir=C:\Users\Fox\Documents\Visual Studio 2015
+VisualStudioEdition=Microsoft Visual Studio Professional 2015
+VisualStudioVersion=14.0
+VS110COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\
+VS120COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\
+VS140COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+VSLANG=1033
+WaRoleType=IISWebRole
+windir=C:\WINDOWS
+_CSRUN_IISEXPRESS_VERSION=8.0
+_DF_STATE_DIRECTORY=C:\Users\Fox\AppData\Local\dftmp\
+_NTVS_PID=18664
+__IISCONFIGURATOR_SITE_CLEANUP_PREFIX_=deployment27(
+RdRoleRoot=D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\
+RoleRoot=D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear
+RdRoleId=deployment27(103).AcroFear.Azure.AcroFear_IN_0
+TEMP=C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp
+TMP=C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp
+PATH=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\NativeBinaries\x86;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\HashiCorp\Vagrant\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\mingw32\bin;C:\Program Files (x86)\Git\usr\bin;C:\HaxeToolkit\haxe\;C:\HaxeToolkit\neko;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft\Web Platform Installer\;C:\Users\Fox\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\nodejs\;C:\Users\Fox\AppData\Local\atom\bin;C:\Users\Fox\AppData\Roaming\npm;C:\Users\Fox\AppData\Local\atom\bin;C:\Users\Fox\AppData\Roaming\npm;D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\base\x64;D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\base\x86;
+RdRoleConfigRootPath=C:\Users\Fox\AppData\Local\dftmp\Config\
+RdRoleResourcesRootPath=C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea
+RdRoleLogRootPath=C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea
+RdServerNamePipe=\\.\pipe\RdRuntimeServer
+RdNamedPipeTimeoutInSeconds=30
+__WaRuntimeAgent__=WA-Runtime-728f8e0f9568013c31be9019009f4fa0
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>echo Using iisnode binaries location 'C:\Program Files (x86)\iisnode-dev\release\x64' 
+Using iisnode binaries location 'C:\Program Files (x86)\iisnode-dev\release\x64'
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>echo installing iisnode module using AppCMD alias "C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  
+installing iisnode module using AppCMD alias "C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config" 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>"C:\Program Files\IIS Express\appcmd.exe" /apphostconfig:"C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  install module /name:"iisnode" /image:"C:\Program Files (x86)\iisnode-dev\release\x64\iisnode.dll" 
+GLOBAL MODULE object "iisnode" added
+MODULE object "iisnode" added
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>set apphostconfigfile="C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>powershell -c "set-executionpolicy unrestricted" 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>powershell .\ChangeConfig.ps1 "C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config"  
+Adding iisnode section to config file 'C:\Users\Fox\AppData\Local\dftmp\Resources\c769ff88-3c01-4492-a5ae-0892ed19a5ea\temp\temp\RoleTemp\applicationHost.config'
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>if 0 NEQ 0 goto error 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>copy /y "C:\Program Files (x86)\iisnode-dev\release\x64\iisnode_schema.xml" "C:\Program Files\IIS Express\config\schema\iisnode_schema.xml" 
+        1 file(s) copied.
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>if 0 NEQ 0 goto error 
+
+D:\Code\AcroFear\AcroFear.Azure\csx\Debug\roles\AcroFear\approot\bin>exit /b 0 

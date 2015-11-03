@@ -1,0 +1,17 @@
+{
+  "name": "AcroFear",
+  "version": "0.0.1",
+  "description": "A game about acronyms.",
+  "main": "server.js",
+  "author": {
+    "name": "Kyle \"Fox\" Diller",
+    "email": "onefox@gmail.com"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.2.4",
+    "socket.io": "^1.3.7",
+    "stylus": "^0.52.4"
+  }
+}

@@ -1,0 +1,7 @@
+D:\Code\AcroFear\AcroFear.Azure\bin\Debug\ServiceConfiguration.cscfg
+D:\Code\AcroFear\AcroFear.Azure\bin\Debug\ServiceDefinition.csdef
+D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\ChangeConfig.ps1
+D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\download.ps1
+D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\Microsoft.NodejsTools.WebRole.dll
+D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\node.cmd
+D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\setup_web.cmd

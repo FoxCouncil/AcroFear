@@ -1,0 +1,14 @@
+﻿div(class="welcome box box-center")
+    div(class="text-center")
+        h1 Login
+        h4 Please enter your deets
+        form
+            div(class="form-group")
+                label(for="email") Email Address
+                input(type="email", class="form-control", id="email", placeholder="user@example.com")
+            div(class="form-group")
+                label(for="password") Password
+                input(type="password", class="form-control", id="password")
+            div(class="form-group")
+                button(type="submit", class="btn btn-block btn-default") Login
+                button(type="button", class="btn btn-block btn-warning", ng-click="cancelButtonClick()") Cancel

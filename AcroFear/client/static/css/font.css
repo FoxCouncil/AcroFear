@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'audimat_bold';
+    src: url('/static/fonts/audimb__-webfont.eot');
+    src: url('/static/fonts/audimb__-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimb__-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimb__-webfont.woff') format('woff'),
+         url('/static/fonts/audimb__-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimb__-webfont.svg#audimat_bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_boldoblique';
+    src: url('/static/fonts/audimbo_-webfont.eot');
+    src: url('/static/fonts/audimbo_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimbo_-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimbo_-webfont.woff') format('woff'),
+         url('/static/fonts/audimbo_-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimbo_-webfont.svg#audimat_boldoblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_light';
+    src: url('/static/fonts/audiml__-webfont.eot');
+    src: url('/static/fonts/audiml__-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audiml__-webfont.woff2') format('woff2'),
+         url('/static/fonts/audiml__-webfont.woff') format('woff'),
+         url('/static/fonts/audiml__-webfont.ttf') format('truetype'),
+         url('/static/fonts/audiml__-webfont.svg#audimat_light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_lightoblique';
+    src: url('/static/fonts/audimlo_-webfont.eot');
+    src: url('/static/fonts/audimlo_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimlo_-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimlo_-webfont.woff') format('woff'),
+         url('/static/fonts/audimlo_-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimlo_-webfont.svg#audimat_lightoblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_oblique';
+    src: url('/static/fonts/audimo__-webfont.eot');
+    src: url('/static/fonts/audimo__-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimo__-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimo__-webfont.woff') format('woff'),
+         url('/static/fonts/audimo__-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimo__-webfont.svg#audimat_oblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_regular';
+    src: url('/static/fonts/audimrg_-webfont.eot');
+    src: url('/static/fonts/audimrg_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimrg_-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimrg_-webfont.woff') format('woff'),
+         url('/static/fonts/audimrg_-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimrg_-webfont.svg#audimat_regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_smallcaps';
+    src: url('/static/fonts/audimsc_-webfont.eot');
+    src: url('/static/fonts/audimsc_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimsc_-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimsc_-webfont.woff') format('woff'),
+         url('/static/fonts/audimsc_-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimsc_-webfont.svg#audimat_smallcaps') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_smallcapsbold';
+    src: url('/static/fonts/audimscb-webfont.eot');
+    src: url('/static/fonts/audimscb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimscb-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimscb-webfont.woff') format('woff'),
+         url('/static/fonts/audimscb-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimscb-webfont.svg#audimat_smallcapsbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat_smallcapslight';
+    src: url('/static/fonts/audimscl-webfont.eot');
+    src: url('/static/fonts/audimscl-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/audimscl-webfont.woff2') format('woff2'),
+         url('/static/fonts/audimscl-webfont.woff') format('woff'),
+         url('/static/fonts/audimscl-webfont.ttf') format('truetype'),
+         url('/static/fonts/audimscl-webfont.svg#audimat_smallcapslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

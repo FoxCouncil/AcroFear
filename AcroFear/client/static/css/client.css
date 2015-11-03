@@ -1,0 +1,71 @@
+@import "font.css";
+body,
+html {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  font: 14px "audimat_regular", sans-serif;
+}
+.box {
+  color: #fff;
+  background-color: #121212;
+  padding: 2rem 3rem;
+  min-width: 30rem;
+}
+.box-center {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.box-pulse {
+  animation: pulse 1s ease infinite;
+}
+.box-pulse-hover:hover {
+  animation: pulse 1s ease infinite;
+}
+@-moz-keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
