@@ -19,7 +19,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <NodejsPort>1337</NodejsPort>
     <StartWebBrowser>true</StartWebBrowser>
   </PropertyGroup>
@@ -30,6 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="server\functions\messaging.js" />
     <Compile Include="server\functions\account.js" />
     <Compile Include="server\models\session.js" />
     <Compile Include="server\models\user.js" />
@@ -39,57 +40,13 @@
     <Content Include="client\static\html\connecting.jade" />
     <Content Include="client\static\html\home.jade" />
     <Content Include="client\static\html\index.jade" />
+    <Content Include="client\static\html\register.jade" />
     <Content Include="client\static\html\login.jade" />
+    <Content Include="client\static\html\lobby.jade" />
     <Content Include="client\static\html\welcome.jade" />
-    <Content Include="client\static\js\core.js" />
+    <Content Include="client\static\js\client.js" />
     <Compile Include="server.js" />
     <Content Include="client\static\css\client.styl" />
-    <Content Include="client\static\css\font.css" />
-    <Content Include="client\static\fonts\audimbo_-webfont.eot" />
-    <Content Include="client\static\fonts\audimbo_-webfont.svg" />
-    <Content Include="client\static\fonts\audimbo_-webfont.ttf" />
-    <Content Include="client\static\fonts\audimbo_-webfont.woff" />
-    <Content Include="client\static\fonts\audimbo_-webfont.woff2" />
-    <Content Include="client\static\fonts\audimb__-webfont.eot" />
-    <Content Include="client\static\fonts\audimb__-webfont.svg" />
-    <Content Include="client\static\fonts\audimb__-webfont.ttf" />
-    <Content Include="client\static\fonts\audimb__-webfont.woff" />
-    <Content Include="client\static\fonts\audimb__-webfont.woff2" />
-    <Content Include="client\static\fonts\audimlo_-webfont.eot" />
-    <Content Include="client\static\fonts\audimlo_-webfont.svg" />
-    <Content Include="client\static\fonts\audimlo_-webfont.ttf" />
-    <Content Include="client\static\fonts\audimlo_-webfont.woff" />
-    <Content Include="client\static\fonts\audimlo_-webfont.woff2" />
-    <Content Include="client\static\fonts\audiml__-webfont.eot" />
-    <Content Include="client\static\fonts\audiml__-webfont.svg" />
-    <Content Include="client\static\fonts\audiml__-webfont.ttf" />
-    <Content Include="client\static\fonts\audiml__-webfont.woff" />
-    <Content Include="client\static\fonts\audiml__-webfont.woff2" />
-    <Content Include="client\static\fonts\audimo__-webfont.eot" />
-    <Content Include="client\static\fonts\audimo__-webfont.svg" />
-    <Content Include="client\static\fonts\audimo__-webfont.ttf" />
-    <Content Include="client\static\fonts\audimo__-webfont.woff" />
-    <Content Include="client\static\fonts\audimo__-webfont.woff2" />
-    <Content Include="client\static\fonts\audimrg_-webfont.eot" />
-    <Content Include="client\static\fonts\audimrg_-webfont.svg" />
-    <Content Include="client\static\fonts\audimrg_-webfont.ttf" />
-    <Content Include="client\static\fonts\audimrg_-webfont.woff" />
-    <Content Include="client\static\fonts\audimrg_-webfont.woff2" />
-    <Content Include="client\static\fonts\audimscb-webfont.eot" />
-    <Content Include="client\static\fonts\audimscb-webfont.svg" />
-    <Content Include="client\static\fonts\audimscb-webfont.ttf" />
-    <Content Include="client\static\fonts\audimscb-webfont.woff" />
-    <Content Include="client\static\fonts\audimscb-webfont.woff2" />
-    <Content Include="client\static\fonts\audimscl-webfont.eot" />
-    <Content Include="client\static\fonts\audimscl-webfont.svg" />
-    <Content Include="client\static\fonts\audimscl-webfont.ttf" />
-    <Content Include="client\static\fonts\audimscl-webfont.woff" />
-    <Content Include="client\static\fonts\audimscl-webfont.woff2" />
-    <Content Include="client\static\fonts\audimsc_-webfont.eot" />
-    <Content Include="client\static\fonts\audimsc_-webfont.svg" />
-    <Content Include="client\static\fonts\audimsc_-webfont.ttf" />
-    <Content Include="client\static\fonts\audimsc_-webfont.woff" />
-    <Content Include="client\static\fonts\audimsc_-webfont.woff2" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -99,7 +56,6 @@
     <Folder Include="client\static\css\" />
     <Folder Include="client\static\js\" />
     <Folder Include="client\static\img\" />
-    <Folder Include="client\static\fonts\" />
     <Folder Include="client\static\html\" />
     <Folder Include="server\" />
     <Folder Include="server\functions\" />

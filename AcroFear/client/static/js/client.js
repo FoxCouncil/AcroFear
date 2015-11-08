@@ -17,6 +17,7 @@ Storage.prototype.getObject = function (key) {
 var ACRO_FEAR_APP = angular.module("AcroFearApp", ['ngRoute']);
 
 ACRO_FEAR_APP.factory('$socket', function($rootScope) {
+
     var socket = io.connect();
 
     return {
@@ -37,6 +38,9 @@ ACRO_FEAR_APP.factory('$socket', function($rootScope) {
                     }
                 });
             })
+        },
+        removeListener: function(listener, callback) {
+            socket.removeListener(listener, callback);
         }
     };
 });
@@ -67,6 +71,10 @@ ACRO_FEAR_APP.config(function($routeProvider, $locationProvider) {
         templateUrl: 'static/html/register.html',
         controller: 'RegisterController'
     }).
+    when('/lobby', {
+        templateUrl: 'static/html/lobby.html',
+        controller: 'LobbyController'
+    }).
     when('/play/:gameId', {
         templateUrl: 'static/html/play.html',
         controller: 'PlayController'
@@ -88,7 +96,7 @@ ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket) {
     });
 
     $socket.on('read-string-memory', function(c_memObjKey) {
-        $socket.emit('read-string-memory', localStorage.getItem('s:' + c_memObjKey));
+        $socket.emit('read-string-memory', { key: c_memObjKey, value: localStorage.getItem('s:' + c_memObjKey) });
     });
 
     $socket.on('write-string-memory', function(c_memObj) {
@@ -100,7 +108,7 @@ ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket) {
     });
 
     $socket.on('read-object-memory', function(c_memObjKey) {
-        $socket.emit('read-object-memory', localStorage.getObject('o:' + c_memObjKey));
+        $socket.emit('read-object-memory', { key: c_memObjKey, value: localStorage.getObject('o:' + c_memObjKey) });
     });
 
     $socket.on('write-object-memory', function(c_memObj) {
@@ -118,12 +126,20 @@ ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket) {
     $socket.on('disconnect', function() {
         $location.path('/connecting');
     });
+
+    $socket.on('set-user', function(c_userDetails) {
+        ACRO_FEAR_APP._user = c_userDetails;
+    })
 });
 
 ACRO_FEAR_APP.controller('ConnectingController', function($scope, $socket) {
     $scope.numberOfRetries = 0;
     $socket.on('reconnect_attempt', function(retryTimes) {
         $scope.numberOfRetries = retryTimes;
+    });
+
+    $scope.$on('$destroy', function(event) {
+        $socket.removeListener('reconnect_attempt');
     });
 });
 
@@ -135,7 +151,6 @@ ACRO_FEAR_APP.controller('HomeController', function($location, $socket) {
 });
 
 ACRO_FEAR_APP.controller('WelcomeController', function($scope, $location, $socket) {
-
     $scope.loginButtonClick = function() {
         $location.path('/login');
     }
@@ -146,9 +161,89 @@ ACRO_FEAR_APP.controller('WelcomeController', function($scope, $location, $socke
 });
 
 ACRO_FEAR_APP.controller('LoginController', function($scope, $location, $socket) {
+
+    $scope.errorMessage = "";
+    $scope.processingLogin = false;
+
+    $socket.on('loginResult', function(result) {
+        $scope.processingLogin = false;
+
+        if (!result.success) {
+            $scope.errorMessage = result.msg;
+        }
+    });
+
+    $scope.loginButtonClick = function() {
+        if (!$scope.email) {
+            $scope.errorMessage = "Need an email address...";
+        } else if (!$scope.password) {
+            $scope.errorMessage = "Need a password, to unlock stuff...";
+        }  else {
+            $scope.errorMessage = "";
+            $scope.processingLogin = true;
+            $socket.emit('login', {
+                email: $scope.email,
+                password: $scope.password
+            });
+        }
+    }
+
     $scope.cancelButtonClick = function() {
         $location.path('/welcome');
     }
+
+    $scope.$on('$destroy', function(event) {
+        $socket.removeListener('loginResult');
+    });
+});
+
+ACRO_FEAR_APP.controller('RegisterController', function($scope, $location, $socket) {
+
+    $scope.errorMessage = "";
+    $scope.processingRegistration = false;
+
+    $socket.on('registrationResult', function(result) {
+        $scope.processingRegistration = false;
+
+        if (!result.success) {
+            $scope.errorMessage = result.msg;
+        }
+    });
+
+    $scope.registerButtonClick = function() {
+        if (!$scope.email || !$scope.username) {
+            $scope.errorMessage = "Need an email and username...";
+        } else if (!$scope.password || !$scope.password2) {
+            $scope.errorMessage = "Need a password, to lock stuff up...";
+        } else if ($scope.password != $scope.password2) {
+            $scope.errorMessage = "C'mon, the passwords need to match...";
+        } else {
+            $scope.errorMessage = "";
+            $scope.processingRegistration = true;
+            $socket.emit('register', {
+                email: $scope.email,
+                username: $scope.username,
+                password: $scope.password
+            });
+        }
+    }
+
+    $scope.cancelButtonClick = function() {
+        $location.path('/welcome');
+    }
+});
+
+ACRO_FEAR_APP.controller('LobbyController', function($scope, $location, $socket) {
+
+    $socket.on('chat', function(c_chatData) {
+        console.log(c_chatData);
+    });
+
+    $socket.emit('join-channel', 'lobby');
+
+    $scope.$on('$destroy', function(event) {
+        $socket.removeListener('chat');
+    });
 });
 
 var ACRO_FEAR_APP2 = (function() {

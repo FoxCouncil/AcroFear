@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AcroFear.Azure" generation="1" functional="0" release="0" Id="297e16c8-537c-47b5-bc78-eb402eaaadd8" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AcroFear.Azure" generation="1" functional="0" release="0" Id="9e32764f-b081-43fb-8428-bfde9ec99994" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="AcroFear.AzureGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="6b677c79-201d-4c09-a59e-3816ba19f6be" ref="Microsoft.RedDog.Contract\ServiceContract\AcroFear.AzureContract@ServiceDefinition">
+    <implementation Id="81f998d3-5aea-4472-bfc4-5cd785c8a432" ref="Microsoft.RedDog.Contract\ServiceContract\AcroFear.AzureContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="7e3e1116-c01d-417f-934e-f889c7cda9d5" ref="Microsoft.RedDog.Contract\Interface\AcroFear:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="e5204871-39c9-4e6a-8505-22030d344550" ref="Microsoft.RedDog.Contract\Interface\AcroFear:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/AcroFear.Azure/AcroFear.AzureGroup/AcroFear:Endpoint1" />
           </inPort>

@@ -1,2 +1,0 @@
-# AcroFear
-A web game

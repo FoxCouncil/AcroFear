@@ -1,0 +1,26 @@
+﻿div(class="welcome box box-center")
+    div
+        h1(class="text-center") Register
+            br
+            small Please give us your deets
+        div(class="alert alert-danger", ng-show="errorMessage") {{errorMessage}}
+        form            
+            div(class="form-group")
+                label(for="email") Email Address
+                input(ng-model="email", type="email", class="form-control input-lg", id="email", placeholder="user@example.com")
+            hr
+            div(class="form-group")
+                label(for="username") Username
+                input(ng-model="username", type="text", class="form-control input-lg", id="username")
+            hr
+            div(class="form-group")
+                label(for="password") Password
+                input(ng-model="password", type="password", class="form-control input-lg", id="password")
+            div(class="form-group")
+                label(for="password2") Password Confirmation
+                input(ng-model="password2", type="password", class="form-control input-lg", id="password2")
+            hr
+            div(class="form-group")
+                button(type="submit", ng-disabled="processingRegistration", class="btn btn-success btn-lg col-md-5", ng-click="registerButtonClick()") Register
+                div(class="col-md-2")
+                button(type="button", ng-disabled="processingRegistration", class="btn btn-warning btn-lg col-md-5", ng-click="cancelButtonClick()") Cancel

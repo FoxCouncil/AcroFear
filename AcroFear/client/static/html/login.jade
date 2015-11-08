@@ -1,14 +1,18 @@
 ﻿div(class="welcome box box-center")
-    div(class="text-center")
-        h1 Login
-        h4 Please enter your deets
+    div
+        h1(class="text-center") Login
+            br
+            small Please enter your deets
+        div(class="alert alert-danger", ng-show="errorMessage") {{errorMessage}}
         form
             div(class="form-group")
                 label(for="email") Email Address
-                input(type="email", class="form-control", id="email", placeholder="user@example.com")
+                input(ng-model="email", type="email", class="form-control input-lg", id="email", placeholder="user@example.com")
             div(class="form-group")
                 label(for="password") Password
-                input(type="password", class="form-control", id="password")
+                input(ng-model="password", type="password", class="form-control input-lg", id="password")
+            hr
             div(class="form-group")
-                button(type="submit", class="btn btn-block btn-default") Login
-                button(type="button", class="btn btn-block btn-warning", ng-click="cancelButtonClick()") Cancel
+                button(type="submit", class="btn btn-default btn-lg col-md-5", ng-click="loginButtonClick()") Login
+                div(class="col-md-2")
+                button(type="button", class="btn btn-warning btn-lg col-md-5", ng-click="cancelButtonClick()") Cancel
