@@ -5,3 +5,10 @@ D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\download.ps1
 D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\Microsoft.NodejsTools.WebRole.dll
 D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\node.cmd
 D:\Code\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\setup_web.cmd
+D:\GitHub\AcroFear\AcroFear.Azure\bin\Debug\ServiceConfiguration.cscfg
+D:\GitHub\AcroFear\AcroFear.Azure\bin\Debug\ServiceDefinition.csdef
+D:\GitHub\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\ChangeConfig.ps1
+D:\GitHub\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\download.ps1
+D:\GitHub\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\Microsoft.NodejsTools.WebRole.dll
+D:\GitHub\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\node.cmd
+D:\GitHub\AcroFear\AcroFear.Azure\obj\Debug\AcroFear\bin\setup_web.cmd

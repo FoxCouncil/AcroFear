@@ -1,4 +1,18 @@
-﻿div(class="lobby box-center")
-    div(class="menu")
-    div(class="chat")
-    div(class="rooms")
+﻿div(class="row")
+    div(class="lobby box-center col-xs-12 col-md-12")
+        div(class="row")
+            div(class="chat col-xs-12 col-md-8 col-lg-10")
+                div(class="row")
+                    div(class="chatbox col-xs-12 col-md-12")
+                        div(class="chatlog")
+                            div(ng-repeat="chat in chatBuffer" ng-class="{{chat.type}}" class="msg")
+                                div(class="msg-name") {{chat.who}}
+                                div(class="msg-content") {{chat.value}}
+                div(class="row")
+                    div(class="chatinput col-xs-12 col-md-12")
+                        input(ng-model="chatinput", ng-keypress="($event.charCode==13)?sendChat():return", placeholder="Send chat...")
+            div(class="rooms col-xs-12 col-md-4 col-lg-2 visible-lg-block")
+                div
+                    div {{roomName}} ({{roomCount}})
+                        div(ng-repeat="user in roomList" class="room-user")
+                            div {{user}}

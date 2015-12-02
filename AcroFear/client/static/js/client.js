@@ -45,6 +45,23 @@ ACRO_FEAR_APP.factory('$socket', function($rootScope) {
     };
 });
 
+ACRO_FEAR_APP.factory('$user', function($rootScope) {
+
+    var m_userData = null;
+
+    return {
+        setUser: function(c_userData, callback) {
+            m_userData = c_userData;
+        },
+        getUser: function() {
+            return m_userData;
+        },
+        getUsername: function() {
+            return m_userData.username;
+        }
+    };
+});
+
 ACRO_FEAR_APP.config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
@@ -86,7 +103,7 @@ ACRO_FEAR_APP.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket) {
+ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket, $user) {
 
     $location.path('/connecting');
 
@@ -128,7 +145,7 @@ ACRO_FEAR_APP.controller('AcroFearController', function($location, $socket) {
     });
 
     $socket.on('set-user', function(c_userDetails) {
-        ACRO_FEAR_APP._user = c_userDetails;
+        $user.setUser(c_userDetails);
     })
 });
 
@@ -164,6 +181,11 @@ ACRO_FEAR_APP.controller('LoginController', function($scope, $location, $socket)
 
     $scope.errorMessage = "";
     $scope.processingLogin = false;
+
+    if (localStorage.getItem('mem:registration_email') != null) {
+        $scope.email = localStorage.getItem('mem:registration_email');
+        localStorage.removeItem('mem:registration_email');
+    }
 
     $socket.on('loginResult', function(result) {
         $scope.processingLogin = false;
@@ -207,6 +229,9 @@ ACRO_FEAR_APP.controller('RegisterController', function($scope, $location, $sock
 
         if (!result.success) {
             $scope.errorMessage = result.msg;
+        } else {
+            localStorage.setItem('mem:registration_email', result.email);
+            $location.path('/login');
         }
     });
 
@@ -233,11 +258,37 @@ ACRO_FEAR_APP.controller('RegisterController', function($scope, $location, $sock
     }
 });
 
-ACRO_FEAR_APP.controller('LobbyController', function($scope, $location, $socket) {
+ACRO_FEAR_APP.controller('LobbyController', function($scope, $location, $socket, $user) {
+
+    $scope.chatBuffer = [];
+    $scope.roomName = '';
+    $scope.roomCount = 0;
+    $scope.roomList = [];
 
     $socket.on('chat', function(c_chatData) {
-        console.log(c_chatData);
+        $scope.chatBuffer.push(c_chatData);
     });
+
+    $socket.on('room-data', function(c_roomData) {
+        $scope.roomName = c_roomData.name;
+        $scope.roomCount = c_roomData.total;
+        $scope.roomList = c_roomData.users;
+    });
+
+    $scope.sendChat = function() {
+        if ($scope.chatinput) {
+
+            var a_chatInput = $scope.chatinput;
+            $scope.chatinput = "";
+
+            $socket.emit('chat', a_chatInput);
+            $scope.chatBuffer.push({
+                who: $user.getUsername(),
+                type: 'msg-self',
+                value: a_chatInput
+            });
+        }
+    }
 
     $socket.emit('join-channel', 'lobby');
 

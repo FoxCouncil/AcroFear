@@ -36,14 +36,8 @@
     </Startup>
     <Contents>
       <Content destination=".\">
-        <SourceDirectory path="D:\Code\AcroFear\AcroFear.Azure\rcf\Debug\AcroFearContent\" />
-      </Content>
-      <Content destination=".\">
-        <SourceDirectory path="D:\Code\AcroFear\AcroFear.Azure\ecf\AcroFearContent\" />
+        <SourceDirectory path="D:\GitHub\AcroFear\AcroFear.Azure\rcf\Debug\AcroFearContent\" />
       </Content>
     </Contents>
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
   </WebRole>
 </ServiceDefinition>

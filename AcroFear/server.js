@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'client/static/html'));
 app.set('view engine', 'jade');
 
 // DB
-app.set('mongoose', mongoose.connect('mongodb://localhost/acrofear'));
+app.set('mongoose', mongoose.connect('mongodb://192.168.99.100:32770/acrofear'));
 
 // Middleware
 app.use(require('stylus').middleware(path.join(__dirname, 'client')));

@@ -5,21 +5,18 @@ var crypto = require('crypto');
 var User = require('../models/user.js');
 var Session = require('../models/session.js');
 
-var account = {};
-
-account.socket = null;
-
-account.SetSocket = function (c_socket) {
-    account.socket = c_socket;
+function Account(c_socket, c_io) {
+    this.m_io = c_io;
+    this.m_socket = c_socket;
 }
 
-account.VerifyEmailAddress = function (email) {
+Account.prototype.VerifyEmailAddress = function (email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     
     return re.test(email);
 }
 
-account.SanitizeUserDocument = function (userDocument) {
+Account.prototype.SanitizeUserDocument = function (userDocument) {
     var sanitizedUserDocument = JSON.parse(JSON.stringify(userDocument));
     sanitizedUserDocument.salt = undefined;
     sanitizedUserDocument.password = undefined;
@@ -27,21 +24,25 @@ account.SanitizeUserDocument = function (userDocument) {
     return sanitizedUserDocument;
 }
 
-account.CreateUser = function(email, username, password) {
+Account.prototype.CreateUser = function (email, username, password) {
+    
+    var a_accountObj = this;
+    var a_socket = this.m_socket;
+
     if (email == undefined || password == undefined) {
-        account.socket.emit('registrationResult', { success: false, msg: 'Need more data...' });
+        a_socket.emit('registrationResult', { success: false, msg: 'Need more data...' });
         return;
     }
     
-    if (!account.VerifyEmailAddress(email)) {
-        account.socket.emit('registrationResult', { success: false, msg: 'Invalid email address...' });
+    if (!this.VerifyEmailAddress(email)) {
+        a_socket.emit('registrationResult', { success: false, msg: 'Invalid email address...' });
         return;
     }
     
     User.findOne({ 'email': email }, function (err, existingUser) {
         
         if (existingUser !== null) {
-            account.socket.emit('registrationResult', { success: false, msg: 'User already exists' });
+            a_socket.emit('registrationResult', { success: false, msg: 'User already exists' });
             return;
         }
         
@@ -64,31 +65,36 @@ account.CreateUser = function(email, username, password) {
         user.save(function (err) {
             
             if (err) {
-                account.socket.emit('registrationResult', { success: false, msg: 'Unknown Error', err: err });
+                a_socket.emit('registrationResult', { success: false, msg: 'Unknown Error', err: err });
                 return;
             }
             
-            account.socket.emit('registrationResult', { success: true, userid: user._id });
+            a_socket.emit('registrationResult', { success: true, userid: user._id, email: email });
+
             return;
         });
     });
 }
 
-account.Login = function (email, password) {
+Account.prototype.Login = function (email, password) {
+    
+    var a_accountObj = this;
+    var a_socket = this.m_socket;
+
     if (email === undefined || password === undefined) {
-        account.socket.emit('loginResult', { success: false, msg: 'Need more data...' });
+        a_socket.emit('loginResult', { success: false, msg: 'Need more data...' });
         return;
     }
     
-    if (!account.VerifyEmailAddress(email)) {
-        account.socket.emit('loginResult', { success: false, msg: 'Need a valid email...' });
+    if (!this.VerifyEmailAddress(email)) {
+        a_socket.emit('loginResult', { success: false, msg: 'Need a valid email...' });
         return;
     }
     
     User.findOne({ 'email': email }).exec(function (err, existingUser) {
         
         if (existingUser === null) {
-            account.socket.emit('loginResult', { success: false, msg: 'I don\'t think I know you, try registering?' });
+            a_socket.emit('loginResult', { success: false, msg: 'I don\'t think I know you, try registering?' });
             return;
         }
         
@@ -99,12 +105,12 @@ account.Login = function (email, password) {
         var derivedKey = key.toString('hex');
         
         if (existingUser.password !== derivedKey) {
-            account.socket.emit('loginResult', { success: false, msg: 'Access Denied...' });
+            a_socket.emit('loginResult', { success: false, msg: 'Access Denied...' });
             return;
         }
         
         // Find Old Session
-        var a_clientIp = account.socket.client.conn.remoteAddress;
+        var a_clientIp = a_socket.client.conn.remoteAddress;
         
         Session.findOne({ 'ip': a_clientIp }, function (err, existingSession) {
             
@@ -120,34 +126,38 @@ account.Login = function (email, password) {
                 existingSession.save(function (err) {
                     
                     if (err) {
-                        account.socket.emit('loginResult', { success: false, msg: 'Could not save your session...' });
+                        a_socket.emit('loginResult', { success: false, msg: 'Could not save your session...' });
                         return;
                     }
                     
                     existingUser._sessions.push(existingSession._id);
                     existingUser.save();
                     
-                    account.ProcessLogin(existingSession.token, existingUser);
+                    a_accountObj.ProcessLogin(existingSession.token, existingUser);
                 });
             } else {
-                account.ProcessLogin(existingSession.token, existingUser);
+                a_accountObj.ProcessLogin(existingSession.token, existingUser);
             }
         });
     });
 };
 
-account.ProcessLogin = function (token, user) {
-    var a_cleanUser = account.SanitizeUserDocument(user);
+Account.prototype.ProcessLogin = function (token, user) {
+    var a_cleanUser = this.SanitizeUserDocument(user);
     
-    account.socket._user = a_cleanUser;
-    account.socket._isAuthed = true;
-    account.socket.emit('write-string-memory', { key: 'session', value: token });
-    account.socket.emit('set-user', { user: a_cleanUser });
-    account.socket.emit('loginResult', { success: true });
-    account.socket.emit('set-state', 'lobby');
+    this.m_socket._user = a_cleanUser;
+    this.m_socket._isAuthed = true;
+    this.m_socket.emit('write-string-memory', { key: 'session', value: token });
+    this.m_socket.emit('set-user', a_cleanUser);
+    this.m_socket.emit('loginResult', { success: true });
+    this.m_socket.emit('set-state', 'lobby');
 };
 
-account.ConsumeToken = function (token, callback) {
+Account.prototype.ConsumeToken = function (token, callback) {
+    
+    var a_accountObj = this;
+    // var a_socket = this.m_socket;
+
     Session.findOne({ 'token': token }).populate('_user').exec(function (err, existingSession) {
         
         if (callback === undefined) {
@@ -174,9 +184,9 @@ account.ConsumeToken = function (token, callback) {
                 return;
             }
             
-            callback(null, { 'token': newToken, 'user': account.SanitizeUserDocument(existingSession._user) });
+            callback(null, { 'token': newToken, 'user': a_accountObj.SanitizeUserDocument(existingSession._user) });
         });
     });
 }
 
-module.exports = account;
+module.exports = Account;
