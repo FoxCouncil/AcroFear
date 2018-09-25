@@ -4,8 +4,9 @@
             div(class="chat col-xs-12 col-md-8 col-lg-10")
                 div(class="row")
                     div(class="chatbox col-xs-12 col-md-12")
-                        div(class="chatlog")
+                        div(class="chatlog", scroll-glue="")
                             div(ng-repeat="chat in chatBuffer" ng-class="{{chat.type}}" class="msg")
+                                div(class="msg-time") {{chat.timestamp}}
                                 div(class="msg-name") {{chat.who}}
                                 div(class="msg-content") {{chat.value}}
                 div(class="row")

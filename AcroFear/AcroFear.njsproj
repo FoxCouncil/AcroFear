@@ -31,9 +31,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="server\conductor.js" />
     <Compile Include="server\functions\messaging.js" />
     <Compile Include="server\functions\account.js" />
+    <Compile Include="server\models\game_room.js" />
+    <Compile Include="server\models\game.js" />
     <Compile Include="server\models\session.js" />
+    <Compile Include="server\models\chat_message.js" />
     <Compile Include="server\models\user.js" />
     <Compile Include="server\networking.js" />
     <Compile Include="server\routes.js" />
@@ -48,6 +52,7 @@
     <Content Include="client\static\js\client.js" />
     <Compile Include="server.js" />
     <Content Include="client\static\css\client.styl" />
+    <Content Include="server_settings.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

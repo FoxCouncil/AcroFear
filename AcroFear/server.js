@@ -2,6 +2,7 @@
 var express = require('express');
 var crypto = require('crypto');
 var path = require('path');
+var util = require('util');
 var app = express();
 var fs = require('fs');
 var io = require('socket.io');
@@ -15,12 +16,17 @@ fs.open('./ss.json', 'wx', function (err, fd) {
 });
 
 // Server Variables
-app.set('port', process.env.port || 1337);
+var server_settings = JSON.parse(fs.readFileSync('server_settings.json', 'utf8'));
+app.set('server settings', server_settings);
+app.set('port', process.env.port || server_settings.port);
 app.set('views', path.join(__dirname, 'client/static/html'));
 app.set('view engine', 'jade');
 
 // DB
-app.set('mongoose', mongoose.connect('mongodb://192.168.99.100:32770/acrofear'));
+var db_settings = server_settings.db;
+var dbString = util.format('mongodb://%s:%d/%s', db_settings.host, db_settings.port, db_settings.name);
+console.log(dbString);
+app.set('mongoose', mongoose.connect(dbString));
 
 // Middleware
 app.use(require('stylus').middleware(path.join(__dirname, 'client')));
@@ -33,9 +39,11 @@ var server = app.listen(app.get('port'), function () {
     var host = server.address().address;
     var port = server.address().port;
     
-    console.log('AcroFear server listening at http://%s:%s', host, port);
+    console.log('AcroFear server listening at %s:%s', host, port);
 });
 
 app.set('io', io.listen(server));
 
+// Server Modules
+require('./server/conductor.js')(app);
 require('./server/networking.js')(app);

@@ -29,3 +29,7 @@ node_modules
 issnode
 
 ss.json
+
+# Visual Studio
+.ntvs_analysis.dat
+.vs/

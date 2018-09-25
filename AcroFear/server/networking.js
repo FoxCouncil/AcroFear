@@ -19,35 +19,35 @@
         });
         
         // User Stuff
-        socket.on('login', function (c_loginDetails) {
-            accounts.Login(c_loginDetails.email, c_loginDetails.password);
+        socket.on('login', function (loginDetails) {
+            accounts.Login(loginDetails.email, loginDetails.password);
         });
 
-        socket.on('register', function(c_regDetails) {
-            accounts.CreateUser(c_regDetails.email, c_regDetails.username, c_regDetails.password);
+        socket.on('register', function(regDetails) {
+            accounts.CreateUser(regDetails.email, regDetails.username, regDetails.password);
         });
         
         // Chat Handler
-        socket.on('chat', function (c_userChat) {
-            messaging.SendChat(c_userChat);
-        })
+        socket.on('chat', function (userChat) {
+            messaging.SendChat(userChat);
+        });
         
-        // Channel Handler
-        socket.on('join-channel', function (c_channelName) {
-            messaging.JoinChannel(c_channelName);
+        // Command Handler
+        socket.on('command', function (command) {
+            messaging.Command(command.msg, command.args);
         });
         
         // Memory Handler
-        socket.on('read-string-memory', function(c_memory) {
-            switch (c_memory.key) {
+        socket.on('read-string-memory', function(memory) {
+            switch (memory.key) {
                 case 'session': {
-                    if (c_memory.value == null) {
+                    if (memory.value == null) {
                         // No session at all
                         socket.emit('set-state', 'welcome');
                     } else {
-                        accounts.ConsumeToken(c_memory.value, function(c_authResult, c_authData) {
-                            if (c_authResult === null) {
-                                accounts.ProcessLogin(c_authData.token, c_authData.user);
+                        accounts.ConsumeToken(memory.value, function(authResult, authData) {
+                            if (authResult === null) {
+                                accounts.ProcessLogin(authData.token, authData.user);
                             } else {
                                 socket.emit('set-state', 'welcome');
                             }

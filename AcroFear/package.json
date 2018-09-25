@@ -1,10 +1,10 @@
 {
   "name": "AcroFear",
-  "version": "0.2.0",
+  "version": "0.1.1",
   "description": "A game about acronyms.",
   "main": "server.js",
   "author": {
-    "name": "Kyle \"Fox\" Diller",
+    "name": "Kyle \"Fox\" Polulak",
     "email": "onefox@gmail.com"
   },
   "dependencies": {

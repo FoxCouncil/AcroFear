@@ -154,37 +154,36 @@ Account.prototype.ProcessLogin = function (token, user) {
 };
 
 Account.prototype.ConsumeToken = function (token, callback) {
-    
     var a_accountObj = this;
-    // var a_socket = this.m_socket;
-
-    Session.findOne({ 'token': token }).populate('_user').exec(function (err, existingSession) {
-        
-        if (callback === undefined) {
-            return;
-        }
-        
-        if (err !== null) {
-            callback(err);
-            return;
-        }
-        
-        if (existingSession === null) {
-            callback('session not found');
-            return;
-        }
-        
-        var newToken = crypto.randomBytes(128).toString('base64');
-        
-        existingSession.token = newToken;
-        existingSession.save(function (err) {
+    process.nextTick(function () {        
+        Session.findOne({ 'token': token }).populate('_user').exec(function (err, existingSession) {
             
-            if (err) {
+            if (callback === undefined) {
+                return;
+            }
+            
+            if (err !== null) {
                 callback(err);
                 return;
             }
             
-            callback(null, { 'token': newToken, 'user': a_accountObj.SanitizeUserDocument(existingSession._user) });
+            if (existingSession === null) {
+                callback('session not found');
+                return;
+            }
+            
+            var newToken = crypto.randomBytes(128).toString('base64');
+            
+            existingSession.token = newToken;
+            existingSession.save(function (err) {
+                
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                
+                callback(null, { 'token': newToken, 'user': a_accountObj.SanitizeUserDocument(existingSession._user) });
+            });
         });
     });
 }
